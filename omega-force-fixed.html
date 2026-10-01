@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Omega Force Appliance Repair | Fast, Honest Local Service</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary-blue": "#087FC3",
+            "omega-red": "#E31837",
+            "deep-navy": "#142533",
+            "bg-soft": "#FAFBFC",
+            "soft-blue": "#EAF5FB",
+            "muted-text": "#60717D",
+            "border-subtle": "#E4EBF0",
+            "star-gold": "#F5B700"
+          },
+          fontFamily: {
+            headline: ["Chivo", "sans-serif"],
+            body: ["Manrope", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    @layer base {
+      html {
+        scroll-behavior: smooth;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: #FAFBFC;
+        color: #142533;
+        font-family: 'Manrope', sans-serif;
+      }
+    }
+
+    /* Motion System & Easing */
+    :root {
+      --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Hero Sequence Keyframes */
+    @keyframes heroFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Hero content is visible immediately so the page never opens with a blank hero. */
+    .hero-animate-1, .hero-animate-2, .hero-animate-3, .hero-animate-4, .hero-animate-image {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    /* Intersection Observer Reveal Utilities */
+    .reveal-item {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s var(--motion-ease), transform 0.6s var(--motion-ease);
+      will-change: opacity, transform;
+    }
+    .reveal-item.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Photographic gentle depth hover */
+    .photo-zoom-container img {
+      transition: transform 0.5s ease-out;
+      will-change: transform;
+    }
+    .photo-zoom-container:hover img {
+      transform: scale(1.018);
+    }
+
+    /* Appliance Card Micro-Interactions */
+    .appliance-card {
+      transition: transform 0.25s ease-out, border-color 0.25s ease-out, box-shadow 0.25s ease-out;
+      will-change: transform, box-shadow;
+    }
+    .appliance-card:hover {
+      transform: translateY(-3px);
+      border-color: #087FC3;
+      box-shadow: 0 10px 25px -5px rgba(20, 37, 51, 0.07);
+    }
+    .appliance-card img {
+      transition: transform 0.25s ease-out;
+      will-change: transform;
+    }
+    .appliance-card:hover img {
+      transform: translateY(-4px) scale(1.02);
+    }
+    .appliance-card .card-arrow {
+      transition: transform 0.25s ease-out;
+    }
+    .appliance-card:hover .card-arrow {
+      transform: translateX(3px);
+    }
+
+    /* Red Primary CTA Button Micro-Interactions */
+    .btn-red-primary {
+      transition: background-color 0.2s var(--motion-ease), transform 0.2s var(--motion-ease), box-shadow 0.2s var(--motion-ease);
+      will-change: transform, box-shadow;
+    }
+    .btn-red-primary:hover {
+      background-color: #D1122F !important;
+      transform: translateY(-1.5px);
+      box-shadow: 0 6px 16px -2px rgba(227, 24, 55, 0.28);
+    }
+    .btn-red-primary:active {
+      transform: scale(0.98);
+    }
+    .btn-red-primary .btn-arrow {
+      transition: transform 0.2s var(--motion-ease);
+    }
+    .btn-red-primary:hover .btn-arrow {
+      transform: translateX(3px);
+    }
+
+    /* Review Card Micro-Interactions */
+    .review-card {
+      transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+    }
+    .review-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px -4px rgba(20, 37, 51, 0.08);
+    }
+
+    /* Sticky Header Scrolled State */
+    header.is-scrolled {
+      height: 68px !important;
+      background-color: #ffffff;
+      border-color: #E6EDF2;
+      box-shadow: 0 4px 20px -2px rgba(20, 37, 51, 0.06);
+    }
+
+    /* Map Markers entrance */
+    .map-marker {
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    /* Prefers-reduced-motion fallback */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-item {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .hero-animate-1, .hero-animate-2, .hero-animate-3, .hero-animate-4, .hero-animate-image {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .appliance-card:hover, .btn-red-primary:hover, .review-card:hover {
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-bg-soft text-deep-navy antialiased selection:bg-primary-blue selection:text-white">
+<svg aria-hidden="true" class="inline-defs-container" style="position:absolute;width:0;height:0;overflow:hidden"></svg>
+<!-- ==================== 1. HEADER REFINEMENT ==================== -->
+<header class="sticky top-0 z-50 w-full h-[78px] md:h-[84px] bg-white border-b border-border-subtle shadow-[0_4px_18px_rgba(20,37,51,0.06)] transition-all duration-300" id="site-header">
+<div class="max-w-[1240px] h-full mx-auto px-6 flex items-center justify-between">
+<!-- Brand Lockup -->
+<a class="flex items-center gap-3.5 group focus:outline-none" href="#"><img alt="Omega Force Appliance Repair Logo" class="w-11 h-11 object-contain transition-transform duration-200 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AEtjO1VwYFQEAd4G-JO4dq1ddac-JDK9M6YGl4ul1JsG0zzU3MKlY4FQQNu-U6fWcmzOP4LR-zrCJCD5n38kWrREPFg-mLvphyv1_5OONQpV41QrWF8QBYmQvFtgFrwhXajgheObACQ_32G2cqWlD-KPhy7sput35Pfm6Zfvd-3bXhxN1wjfCnda2oDAkQSruuBHibl7ljlpZ0M3JWbo2RTSHp08ZfGPOj6sN4DSu9QPDUreZf5BFQUkclgPdUKw"><div class="flex flex-col"><span class="font-headline font-bold text-[19px] leading-tight text-deep-navy tracking-tight">OMEGA FORCE</span><span class="font-headline font-bold text-[11px] tracking-[1.4px] text-primary-blue uppercase leading-tight">Appliance Repair</span></div></a>
+<!-- Center Nav Links -->
+<nav class="hidden lg:flex items-center gap-8">
+<a class="font-body text-[15px] font-semibold text-deep-navy hover:text-primary-blue transition-colors duration-200" href="#services">Services</a>
+<a class="font-body text-[15px] font-medium text-muted-text hover:text-deep-navy transition-colors duration-200" href="#why-omega-force">Why Omega Force</a>
+<a class="font-body text-[15px] font-medium text-muted-text hover:text-deep-navy transition-colors duration-200" href="#reviews">Reviews</a>
+<a class="font-body text-[15px] font-medium text-muted-text hover:text-deep-navy transition-colors duration-200" href="#team">About</a>
+</nav>
+<!-- Right Action Area -->
+<div class="flex items-center gap-5 sm:gap-6">
+<a class="hidden sm:inline-flex items-center gap-2 font-body font-semibold text-[15px] text-deep-navy hover:text-primary-blue transition-colors duration-200" href="tel:7632601834">
+<span class="material-symbols-outlined text-[19px] text-primary-blue">call</span>
+<span class="">(763) 260-1834</span>
+</a>
+<a class="btn-red-primary inline-flex items-center justify-center bg-omega-red text-white font-body font-bold text-[15px] h-[48px] px-6 rounded-lg shadow-sm" href="https://omegaforceappliancerepair.com/schedule-service/">
+          Schedule a Repair
+        </a>
+</div>
+</div>
+</header>
+<main class="w-full overflow-hidden">
+<!-- ==================== 2. HERO SECTION ==================== -->
+<section class="w-full bg-white pt-16 md:pt-24 pb-20 md:pb-24 border-b border-border-subtle">
+<div class="max-w-[1240px] mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+<!-- Left Column (54% ~ 7 cols) -->
+<div class="lg:col-span-5 flex flex-col">
+<!-- Eyebrow -->
+<div class="flex items-center gap-2.5 mb-5 hero-animate-1">
+<span class="w-7 h-[3px] bg-omega-red rounded-full"></span>
+<span class="font-body text-[13px] font-bold text-omega-red uppercase tracking-[1.5px]">Local Appliance Repair</span>
+</div>
+<!-- H1 Strict Scale -->
+<h1 class="font-headline font-bold text-[44px] sm:text-[54px] lg:text-[64px] leading-[1.01] text-deep-navy tracking-tight uppercase hero-animate-2">Appliance Repair<br>Without The<br><span class="text-omega-red">Headache.</span></h1>
+<!-- Description -->
+<p class="font-body text-[17px] sm:text-[18px] text-muted-text leading-[1.6] max-w-[540px] mt-6 hero-animate-3">Fast, honest appliance repair from a local team that treats your home like their own. Trusted by over 2,000 Minnesota and Wisconsin homeowners.</p>
+<!-- CTA Row -->
+<div class="flex flex-wrap items-center gap-4 sm:gap-6 mt-8 hero-animate-4">
+<a class="btn-red-primary inline-flex items-center justify-center bg-omega-red text-white font-body font-bold text-[16px] h-[54px] w-full sm:w-[205px] rounded-lg shadow-sm group" href="https://omegaforceappliancerepair.com/schedule-service/">Schedule a Repair<span class="btn-arrow material-symbols-outlined text-[19px] ml-1.5">arrow_forward</span></a>
+<a class="inline-flex items-center gap-2.5 text-deep-navy font-body font-semibold text-[16px] py-2 px-3 hover:text-primary-blue transition-colors duration-200" href="tel:7632601834"><span class="material-symbols-outlined text-primary-blue text-[22px]">call</span><span class="">(763) 260-1834</span></a>
+</div>
+<!-- Service Territory Subtext -->
+<div class="flex items-center gap-2 mt-[18px] text-[14px] text-muted-text font-body hero-animate-4"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span><span class="font-body text-[13px] font-semibold text-deep-navy">Local service. Real people.</span><span class="text-muted-text text-[13px]">• Serving the Twin Cities, Greater St. Cloud &amp; Western Wisconsin</span></div>
+</div>
+<!-- Right Column (46% ~ 5 cols) -->
+<div class="lg:col-span-7 relative hero-animate-image">
+<div class="absolute -top-5 -right-5 w-44 h-44 rounded-full border-[6px] border-omega-red/15 pointer-events-none -z-0"></div>
+<div class="photo-zoom-container relative z-10 rounded-2xl overflow-hidden shadow-[0_12px_35px_rgba(20,37,51,0.12)] bg-slate-100 aspect-[4/3] w-full">
+<img alt="Certified appliance technician diagnosing kitchen refrigerator with test meter" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1XTv1YskpNTzXhdLdaJQSXDXsiFsrstaQf9_vsTF2-nvB4xP-3yOab93M0PhKgbC0vXB93vvUnyL65GwzflKn_dJnDdBSj6NzlyWnv62P8JEYp8rmDK5yEIa8-hfNXKIbmTCCtWq4wgz3BRpBi-ytj8oRv-z8skvWD1U6k-jZC_DE2Io6WqFReBdDVbeFg2KDRrPSzyuyiJ5ddSymlcQmAodatK5spkTbbry-iF8kuBV0lGrG-d5H_ycEm9">
+<div class="absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-[260px] bg-white/95 backdrop-blur-sm px-4 py-3 rounded-xl shadow-[0_8px_24px_rgba(20,37,51,0.12)] border border-border-subtle/80">
+<div class="flex items-center gap-1 text-star-gold">
+<span class="material-symbols-outlined text-[17px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[17px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[17px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[17px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[17px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="mt-1 font-headline font-bold text-[17px] text-deep-navy leading-tight">2,000+</div>
+<div class="text-[12px] text-muted-text font-body leading-tight mt-0.5">Local Customer Reviews</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== 3. TRUST BAR ==================== -->
+<section class="w-full bg-deep-navy py-8 md:py-9 text-white">
+<div class="max-w-[1240px] mx-auto px-6">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 items-center stagger-container">
+<div class="reveal-item flex items-center gap-3.5 is-revealed" style="transition-delay: 0ms;">
+<span class="material-symbols-outlined text-[30px] text-primary-blue shrink-0">reviews</span>
+<div>
+<div class="font-headline font-bold text-[22px] leading-tight text-white">2,000+</div>
+<div class="font-body text-[14px] text-[#B9C8D0] leading-snug">Customer Reviews</div>
+</div>
+</div>
+<div class="reveal-item flex items-center gap-3.5 is-revealed" style="transition-delay: 80ms;">
+<span class="material-symbols-outlined text-[30px] text-primary-blue shrink-0">bolt</span>
+<div>
+<div class="font-headline font-bold text-[22px] leading-tight text-white">Same / Next-Day</div>
+<div class="font-body text-[14px] text-[#B9C8D0] leading-snug">Service Available</div>
+</div>
+</div>
+<div class="reveal-item flex items-center gap-3.5 is-revealed" style="transition-delay: 160ms;">
+<span class="material-symbols-outlined text-[30px] text-primary-blue shrink-0">verified_user</span>
+<div>
+<div class="font-headline font-bold text-[22px] leading-tight text-white">1 Year</div>
+<div class="font-body text-[14px] text-[#B9C8D0] leading-snug">Parts &amp; Labor Warranty</div>
+</div>
+</div>
+<div class="reveal-item flex items-center gap-3.5 is-revealed" style="transition-delay: 240ms;">
+<span class="material-symbols-outlined text-[30px] text-primary-blue shrink-0">badge</span>
+<div>
+<div class="font-headline font-bold text-[22px] leading-tight text-white">Background Checked</div>
+<div class="font-body text-[14px] text-[#B9C8D0] leading-snug">Drug-Tested Techs</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== 4. SERVICES SECTION ==================== -->
+<section class="w-full bg-bg-soft py-20 lg:py-24 border-b border-border-subtle" id="services">
+<div class="max-w-[1240px] mx-auto px-6">
+<div class="reveal-item text-center max-w-2xl mx-auto mb-14 is-revealed">
+<span class="font-body text-[13px] font-bold text-omega-red uppercase tracking-[1.5px]">What We Repair</span>
+<h2 class="font-headline font-bold text-[34px] sm:text-[42px] leading-tight text-deep-navy mt-2">Whatever stopped working, we'll help get it running again.</h2>
+<p class="font-body text-[17px] sm:text-[18px] text-muted-text leading-[1.6] mt-3">
+            From washers and dryers to refrigerators, ovens and cooktops, our technicians work on the appliances you rely on every day.
+          </p>
+</div>
+<!-- 3x3 Grid of 9 Appliance Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-container">
+<!-- Refrigerator Repair -->
+<div class="reveal-item appliance-card bg-white border border-border-subtle rounded-xl p-6 shadow-sm flex flex-col justify-between is-revealed" style="transition-delay: 0ms;">
+<div>
+<div class="h-44 w-full flex items-center justify-center mb-4">
+<img alt="Refrigerator Repair" class="h-[140px] w-auto max-w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WjqHBbNDMqPH38kvE03aycv6tcjpnsHujNDKmt_jq6F9CZ5xmcSV08RYlWeG83p2IvOBdBWvnBU6eIIYeL7_JM4qPoOkVVf9wW0fa3XSGZtmV-KLkRJdG-xnMIGAOWisPR7mAAMa4CPOdv9UL0jdbjqdJKbUCLaVV-RVG-TOuxuYlGY7l4ga9SUK05JoYB7_HhKbQ6M8H28gulKG9bZbXIWqTHI1kB985Mvs6vBjX-yyRO9OOQpOu4IH-J">
+</div>
+<h3 class="font-headline font-bold text-[22px] text-deep-navy">Refrigerator Repair</h3>
+<p class="font-body text-[14px] text-muted-text mt-2 leading-relaxed">Cooling • Ice Maker • Leaks</p>
+</div>
+<a class="inline-flex items-center text-[15px] font-body font-bold text-primary-blue hover:text-deep-navy mt-6 transition-colors duration-200" href="https://omegaforceappliancerepair.com/schedule-service/">Explore Repairs <span class="card-arrow material-symbols-outlined text-[17px] ml-1">arrow_forward</span></a>
+</div>
+<!-- Washing Machine Repair -->
+<div class="reveal-item appliance-card bg-white border border-border-subtle rounded-xl p-6 shadow-sm flex flex-col justify-between is-revealed" style="transition-delay: 80ms;">
+<div>
+<div class="h-44 w-full flex items-center justify-center mb-4">
+<img alt="Washing Machine Repair" class="h-[140px] w-auto max-w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VUENk-hz7cRTmatR_J1bcsa7DXSZlGTXg4ODZ0qKE0cVFKdByorHr3-CK620oinxT5L1tzmftICKhYBjDzhbTk1QaUgBMNM-JcbKvbnh9Kg8D-yalkOyt8b2ItyihubNa3_d5iFppwUWSN6RFARmnkfU7E8L-FLViEJ9aWOJa8mfZv4KHF5LoBT4_zH4FCB4z4T__yUjb2KgRafhUL6gQP0bpq-x1lyx-taWWpKDuAvJKjz9S0DRmkwIo">
+</div>
+<h3 class="font-headline font-bold text-[22px] text-deep-navy">Washing Machine Repair</h3>
+<p class="font-body text-[14px] text-muted-text mt-2 leading-relaxed">Leaks • Spin Issues • Drainage</p>
+</div>
+<a class="inline-flex items-center text-[15px] font-body font-bold text-primary-blue hover:text-deep-navy mt-6 transition-colors duration-200" href="https://omegaforceappliancerepair.com/schedule-service/">Explore Repairs <span class="card-arrow material-symbols-outlined text-[17px] ml-1">arrow_forward</span></a>
+</div>
+<!-- Dryer Repair -->
+<div class="reveal-item appliance-card bg-white border border-border-subtle rounded-xl p-6 shadow-sm flex flex-col justify-between is-revealed" style="transition-delay: 160ms;">
+<div>
+<div class="h-44 w-full flex items-center justify-center mb-4">
+<img alt="Dryer Repair" class="h-[140px] w-auto max-w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VHhN2wUt9dfF_6Tqi64TJVjURz8bWRnhuJHuZjlTT9KcaKa9vBo6ABZiu8TOBYWOYiXLTJP_sWiqVwLybAmJZJqLQk-e0jw4AfC-8vKUW-WoXeU87rYmgcWzTAXbn0LRu8w3ATb4W244pKp-SYb4XggTZSQtBq578IdNElVqDWvH1GRyqxHkq9ScVZhMco-_gLusKOVL-7JBZkVvhkJFtex8cSuqShEQyHjmXR8XQAbfvbULc978fYEtf-">
+</div>
+<h3 class="font-headline font-bold text-[22px] text-deep-navy">Dryer Repair</h3>
+<p class="font-body text-[14px] text-muted-text mt-2 leading-relaxed">Heating • Tumbling • Venting</p>
+</div>
+<a class="inline-flex items-center text-[15px] font-body font-bold text-primary-blue hover:text-deep-navy mt-6 transition-colors duration-200" href="https://omegaforceappliancerepair.com/schedule-service/">Explore Repairs <span class="card-arrow material-symbols-outlined text-[17px] ml-1">arrow_forward</span></a>
+</div>
+<!-- Dishwasher Repair -->
+<div class="reveal-item appliance-card bg-white border border-border-subtle rounded-xl p-6 shadow-sm flex flex-col justify-between is-revealed" style="transition-delay: 240ms;">
+<div>
+<div class="h-44 w-full flex items-center justify-center mb-4">
+<img alt="Dishwasher Repair" class="h-[140px] w-auto max-w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UPRkL09uHkXuIEjJzklTJ0I9LJujXDyUdx_Q6vn1TnnV8Ki0rXyjgpoKXFqpixT2DG_sneaNga7v-jVT__uCieLKzd0k5JBtjF5yEjkapNOBBvGzCN7QzKx-hrBRWY650JDpTHUT2ZTy6PYiClZefxz5ajM5plFX0UkZrWsSZNQdXA2t6LMcpsyUX5pJgs0az-lXtiCUdhJlKZAcraVeurCTZcMrkfbUT-cX_NmZeyySezlK9Dxz2EanM">
+</div>
+<h3 class="font-headline font-bold text-[22px] text-deep-navy">Dishwasher Repair</h3>
+<p class="font-body text-[14px] text-muted-text mt-2 leading-relaxed">Drainage • Cleaning • Leaks</p>
+</div>
+<a class="inline-flex items-center text-[15px] font-body font-bold text-primary-blue hover:text-deep-navy mt-6 transition-colors duration-200" href="https://omegaforceappliancerepair.com/schedule-service/">Explore Repairs <span class="card-arrow material-symbols-outlined text-[17px] ml-1">arrow_forward</span></a>
+</div>
+<!-- Range & Stove Repair -->
+<div class="reveal-item appliance-card bg-white border border-border-subtle rounded-xl p-6 shadow-sm flex flex-col justify-between is-revealed" style="transition-delay: 320ms;">
+<div>
+<div class="h-44 w-full flex items-center justify-center mb-4">
+<img alt="Range and Stove Repair" class="h-[140px] w-auto max-w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UItkzNUa15CqWSDPgcznpC0FFQTEGgpDmnW1Ve3EcIZjxHQv57pNJInwvEl1-2KvWYJfgv87PGfX5CTSWzPHLeABxp12IiyxlSJCE048bFNdxAyHiATlZM7J5cVYHXwpKy8cFtGRtVOTU3YUkDrjAlSOrh_uATlAWatXu-loPpUXsUNxgVLYGgRskLWOGD2EC0FGKrR4k2tNe_cceXUSDmxbssBHA-f08kqw1z2Nn97eGQ9lQhaiC9To0o">
+</div>
+<h3 class="font-headline font-bold text-[22px] text-deep-navy">Range &amp; Stove Repair</h3>
+<p class="font-body text-[14px] text-muted-text mt-2 leading-relaxed">Burners • Ignition • Temperature</p>
+</div>
+<a class="inline-flex items-center text-[15px] font-body font-bold text-primary-blue hover:text-deep-navy mt-6 transition-colors duration-200" href="https://omegaforceappliancerepair.com/schedule-service/">Explore Repairs <span class="card-arrow material-symbols-outlined text-[17px] ml-1">arrow_forward</span></a>
+</div>
+<!-- Wall Oven Repair -->
+<div class="reveal-item appliance-card bg-white border border-border-subtle rounded-xl p-6 shadow-sm flex flex-col justify-between is-revealed" style="transition-delay: 400ms;">
+<div>
+<div class="h-44 w-full flex items-center justify-center mb-4">
+<img alt="Wall Oven Repair" class="h-[140px] w-auto max-w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wok4iQG_tuZnI1sWbajWH2f_C7DZFreeaDvoLiUchGaz7rjQ4PzlzrTe53QXe5UGeJMorCGLZucCtxFHvs3DvJhyhG6HKLU4--HZKRWP6FfB7gcTLuQKBRUbVoRaf49KXaLofe3WcBMxEX1vZNLEpazVF_p9tANtK4trgrw_V2-HyyWTq33N4MS-Tkzr6ID3_JIlsjm7Jmxc28jpx-I-bzb8c1NVPr4Xcp0Nv3pyY23ndiPtqb5wYVa0W8">
+</div>
+<h3 class="font-headline font-bold text-[22px] text-deep-navy">Wall Oven Repair</h3>
+<p class="font-body text-[14px] text-muted-text mt-2 leading-relaxed">Heating • Temperature • Controls</p>
+</div>
+<a class="inline-flex items-center text-[15px] font-body font-bold text-primary-blue hover:text-deep-navy mt-6 transition-colors duration-200" href="https://omegaforceappliancerepair.com/schedule-service/">Explore Repairs <span class="card-arrow material-symbols-outlined text-[17px] ml-1">arrow_forward</span></a>
+</div>
+<!-- Cooktop Repair -->
+<div class="reveal-item appliance-card bg-white border border-border-subtle rounded-xl p-6 shadow-sm flex flex-col justify-between is-revealed" style="transition-delay: 480ms;">
+<div>
+<div class="h-44 w-full flex items-center justify-center mb-4">
+<img alt="Cooktop Repair" class="h-[140px] w-auto max-w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Vpn8TEs1r-Ruu97qMVl5rp_OPP6Riod0sBZC2q6dhWXMHsbSw3tVEWzwEFIfpw3mpjZ-t3pDRwNMMb0L8qV8rj_9yzn2_snLc6ieT_NC68yQDILsIo7e-NlwpHhsNnf6zgENewdNtR1s3vKxDggH5IAukWTFbQKl0HDYMIhkMIR6VcnJ_9Kd0lGlYHTlDR6E1Qf8wF-gT0Eq4icyuvVi2p9Fz7eK5I-hye6TJ0mHXMtVGrOusAW-VVftgv">
+</div>
+<h3 class="font-headline font-bold text-[22px] text-deep-navy">Cooktop Repair</h3>
+<p class="font-body text-[14px] text-muted-text mt-2 leading-relaxed">Burners • Heating • Controls</p>
+</div>
+<a class="inline-flex items-center text-[15px] font-body font-bold text-primary-blue hover:text-deep-navy mt-6 transition-colors duration-200" href="https://omegaforceappliancerepair.com/schedule-service/">Explore Repairs <span class="card-arrow material-symbols-outlined text-[17px] ml-1">arrow_forward</span></a>
+</div>
+<!-- Microwave Repair -->
+<div class="reveal-item appliance-card bg-white border border-border-subtle rounded-xl p-6 shadow-sm flex flex-col justify-between is-revealed" style="transition-delay: 560ms;">
+<div>
+<div class="h-44 w-full flex items-center justify-center mb-4">
+<img alt="Microwave Repair" class="h-[140px] w-auto max-w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UU2fqxnRO5gIe0UlUkk9_DoO0vCsoSjQyaGt_4_J8TiEU6-4S8_nnfYaZ3-BGhyr0yzSO3LvHQE05SK7SSaHMpPNGvmm49k-SWvg5DXHmmHBpkSmVITu3hYLVZNUZl79OPM3MlVzSLCG2N9mcDBA9RoT04hT5AJiGXxeK5l1WqVwhXMDbLW6G7HDPaKtovxWR_WDCU3Co8l9_8lSd96qnNlscm0k_kW72kSXkRbD9YGfohhOQsft9jQ6Ks">
+</div>
+<h3 class="font-headline font-bold text-[22px] text-deep-navy">Microwave Repair</h3>
+<p class="font-body text-[14px] text-muted-text mt-2 leading-relaxed">Heating • Controls • Door</p>
+</div>
+<a class="inline-flex items-center text-[15px] font-body font-bold text-primary-blue hover:text-deep-navy mt-6 transition-colors duration-200" href="https://omegaforceappliancerepair.com/schedule-service/">Explore Repairs <span class="card-arrow material-symbols-outlined text-[17px] ml-1">arrow_forward</span></a>
+</div>
+<!-- Freezer & Ice Maker -->
+<div class="reveal-item appliance-card bg-white border border-border-subtle rounded-xl p-6 shadow-sm flex flex-col justify-between is-revealed" style="transition-delay: 640ms;">
+<div>
+<div class="h-44 w-full flex items-center justify-center mb-4">
+<img alt="Freezer and Ice Maker Repair" class="h-[140px] w-auto max-w-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Ui1VXWEdvHVoHYMJopUIxbmig0NM5afD4frahEGuKidCndClIWRLVohVEgYbUX681BMZlECKauDZLZ46jzMKmpgOL7091iiygcn4XEjcIcp-M4l4OAXapayDib6vTFKwPgQ6GxMtdpy-YOqsrV3NpCycrJ6SEXAuvfpam0ohZpkEyiTdz19XEUP-xGi8B9-SZs7rr83clrj0wOdNvcddXiOrpMgP73CEfIKW02_MAhrxR247z2IVerN7c">
+</div>
+<h3 class="font-headline font-bold text-[22px] text-deep-navy">Freezer &amp; Ice Maker</h3>
+<p class="font-body text-[14px] text-muted-text mt-2 leading-relaxed">Cooling • Frost • Temperature</p>
+</div>
+<a class="inline-flex items-center text-[15px] font-body font-bold text-primary-blue hover:text-deep-navy mt-6 transition-colors duration-200" href="https://omegaforceappliancerepair.com/schedule-service/">Explore Repairs <span class="card-arrow material-symbols-outlined text-[17px] ml-1">arrow_forward</span></a>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== 5. WHY OMEGA FORCE ==================== -->
+<section class="w-full bg-white py-20 lg:py-24" id="why-omega-force">
+<div class="max-w-[1240px] mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+<!-- Left: Authentic Photograph -->
+<div class="reveal-item lg:col-span-6 relative is-revealed">
+<div class="photo-zoom-container rounded-2xl overflow-hidden shadow-[0_12px_35px_rgba(20,37,51,0.1)] aspect-[4/3] bg-slate-100"><img alt="Technician kneeling on floor protective runner while servicing a modern washer" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1X020D966-tRTTq02OgrEZZojEPz6CHGhgT9PJabQrU0ObDe4In0sLAh0ClIZ8FxEZNwRVh4viQUmqyFSkRkG3WyBpNrNu04EcONyRYF_AavgAtKj-LgD9WqQaixSVlisRpOz7RouR36ORsqdW87MKdN7aGFPHcKCISei6MEz16vPV1S7NM3NYjeOsP5Q1yO5yw07Beta_Be6L8zhiGzUqv_zMgeeXC2-qZ99k4sHAZgoCpSUINyecFUfGO"></div>
+<!-- Trust badge overlay -->
+<div class="hidden sm:flex items-center gap-3 absolute -bottom-5 -right-5 bg-white p-4 rounded-xl shadow-lg border border-border-subtle max-w-[260px] transition-transform duration-200 hover:-translate-y-0.5">
+<span class="material-symbols-outlined text-primary-blue text-[32px]">verified</span>
+<div>
+<div class="font-headline font-bold text-[14px] text-deep-navy">BBB Integrity Award</div>
+<div class="font-body text-[12px] text-muted-text">Recognized for ethical local business conduct.</div>
+</div>
+</div>
+</div>
+<!-- Right: Editorial 4 Rows -->
+<div class="reveal-item lg:col-span-6 flex flex-col is-revealed">
+<span class="font-body text-[13px] font-bold text-primary-blue uppercase tracking-[1.5px]">Why Omega Force</span>
+<h2 class="font-headline font-bold text-[34px] sm:text-[40px] leading-tight text-deep-navy mt-2">
+              Good repair is about more than fixing the appliance.
+            </h2>
+<p class="font-body text-[17px] sm:text-[18px] text-muted-text leading-[1.6] mt-4 mb-8">
+              We believe great service means showing up when we say we will, respecting your home, explaining the repair clearly, and standing behind our work.
+            </p>
+<div class="flex flex-col divide-y divide-border-subtle border-t border-b border-border-subtle">
+<!-- 01 -->
+<div class="py-4 sm:py-5 flex items-start gap-4">
+<span class="font-headline font-bold text-[22px] text-omega-red shrink-0 w-8">01</span>
+<div>
+<h3 class="font-headline font-bold text-[19px] text-deep-navy">People You Can Trust</h3>
+<p class="font-body text-[15px] text-muted-text mt-1 leading-relaxed">
+                    Background-checked technicians who respect your home, wear clean shoe covers, and treat your family with courtesy.
+                  </p>
+</div>
+</div>
+<!-- 02 -->
+<div class="py-4 sm:py-5 flex items-start gap-4">
+<span class="font-headline font-bold text-[22px] text-omega-red shrink-0 w-8">02</span>
+<div>
+<h3 class="font-headline font-bold text-[19px] text-deep-navy">Straightforward Pricing</h3>
+<p class="font-body text-[15px] text-muted-text mt-1 leading-relaxed">
+                    No guessing. No surprise bills. We price every job transparently by the national Appliance Blue Book standard.
+                  </p>
+</div>
+</div>
+<!-- 03 -->
+<div class="py-4 sm:py-5 flex items-start gap-4">
+<span class="font-headline font-bold text-[22px] text-omega-red shrink-0 w-8">03</span>
+<div>
+<h3 class="font-headline font-bold text-[19px] text-deep-navy">Fast Local Service</h3>
+<p class="font-body text-[15px] text-muted-text mt-1 leading-relaxed">
+                    15 stocked vans on the road across Minnesota and Western Wisconsin for same or next-day turnaround.
+                  </p>
+</div>
+</div>
+<!-- 04 -->
+<div class="py-4 sm:py-5 flex items-start gap-4">
+<span class="font-headline font-bold text-[22px] text-omega-red shrink-0 w-8">04</span>
+<div>
+<h3 class="font-headline font-bold text-[19px] text-deep-navy">We Back Our Work</h3>
+<p class="font-body text-[15px] text-muted-text mt-1 leading-relaxed">
+                    Full 1-year warranty on replacement parts and 60-day labor warranty for genuine peace of mind.
+                  </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== 6. "WE RESPECT YOUR HOME" VISUAL FEATURE ==================== -->
+<section class="w-full bg-soft-blue py-10 border-y border-border-subtle"><div class="max-w-[1240px] mx-auto px-6"><div class="reveal-item bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-border-subtle flex flex-col md:flex-row items-center justify-between gap-6 is-revealed"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-xl bg-primary-blue/10 text-primary-blue flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[28px]">home_repair_service</span></div><div><span class="font-body font-bold text-[13px] text-primary-blue uppercase tracking-wider">How We Work</span><h3 class="font-headline font-bold text-[28px] sm:text-[36px] text-deep-navy leading-tight mt-1">We respect your home.</h3><p class="font-body text-[15px] text-muted-text max-w-2xl mt-1.5 leading-relaxed">We take care to protect your space, work carefully, and clean up when the job is done. Professional service from start to finish, from protective floor mats to clean shoe covers on every single visit.</p></div></div><div class="flex items-center gap-3 shrink-0 bg-bg-soft px-5 py-3.5 rounded-xl border border-border-subtle"><span class="material-symbols-outlined text-primary-blue text-[28px]">workspace_premium</span><div class="text-left"><div class="font-headline font-bold text-[14px] text-deep-navy">Minnesota BBB</div><div class="font-body text-[12px] text-muted-text">Highest Integrity Award Winner</div></div></div></div></div></section>
+<!-- ==================== 7. HUMAN / TEAM SECTION ==================== -->
+<section class="w-full bg-bg-soft py-20 lg:py-24" id="team"><div class="max-w-[1240px] mx-auto px-6"><div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"><div class="reveal-item lg:col-span-6 is-revealed"><div class="photo-zoom-container rounded-2xl overflow-hidden shadow-[0_12px_35px_rgba(20,37,51,0.1)] aspect-[16/10] bg-slate-100"><img alt="Omega Force team of technicians standing proudly with service van" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1VXq4ZBp-PSDf3sySIjjWaGzUxE7-u-f3yjFh-b_cfadUMVu-efa-IoH73BKj_7P1kkmeBT--zscdU0dVf1YVP5GiW6qAJwwNZoCe9YHH7XsBZ3oaAKlLzTfOH6cFWbyWJuSZP3UqXCsWH5LR9dy3rMBnuODg9OPmjkGFlgheFA9P7RJehjCC_x8LR4giT1Chl5JQS6xk1C1dEhlyUyOJCoPMDS_V4Bs08d0TAsSx7VtEjQN5WNwCnyW59f"></div></div><div class="reveal-item lg:col-span-6 flex flex-col is-revealed"><span class="font-body text-[13px] font-bold text-primary-blue uppercase tracking-[1.5px]">The People Behind The Repair</span><h2 class="font-headline font-bold text-[34px] sm:text-[40px] leading-tight text-deep-navy mt-2">Meet the people behind the repair.</h2><p class="font-body text-[17px] text-muted-text leading-[1.6] mt-4">Local service delivered by trusted neighborhood professionals. Our certified technicians bring decades of combined troubleshooting expertise directly to your doorstep with equipped service vehicles ready to solve issues on the first visit.</p><div class="grid grid-cols-3 gap-3.5 mt-6 pt-5 border-t border-border-subtle"><div class="bg-white p-3.5 rounded-lg border border-border-subtle text-center hover:border-primary-blue transition-colors duration-200"><div class="font-headline font-bold text-[22px] text-deep-navy">23</div><div class="font-body text-[12px] text-muted-text mt-0.5">Local Team Members</div></div><div class="bg-white p-3.5 rounded-lg border border-border-subtle text-center hover:border-primary-blue transition-colors duration-200"><div class="font-headline font-bold text-[22px] text-deep-navy">200+</div><div class="font-body text-[12px] text-muted-text mt-0.5">Combined Years Exp.</div></div><div class="bg-white p-3.5 rounded-lg border border-border-subtle text-center hover:border-primary-blue transition-colors duration-200"><div class="font-headline font-bold text-[22px] text-deep-navy">15 Vans</div><div class="font-body text-[12px] text-muted-text mt-0.5">Stocked on Patrol Daily</div></div></div><div class="mt-8"><a class="inline-flex items-center text-[15px] font-body font-bold text-primary-blue hover:text-deep-navy transition-colors duration-200 group" href="https://omegaforceappliancerepair.com/schedule-service/">Meet Our Team <span class="material-symbols-outlined text-[18px] ml-1.5 transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span></a></div></div></div></div></section>
+<!-- ==================== 8. HOW IT WORKS ==================== -->
+<section class="w-full bg-soft-blue py-20 lg:py-24 border-t border-border-subtle">
+<div class="max-w-[1240px] mx-auto px-6">
+<div class="reveal-item text-center max-w-xl mx-auto mb-16 is-revealed">
+<span class="font-body text-[13px] font-bold text-primary-blue uppercase tracking-[1.5px]">Easy 3-Step Process</span>
+<h2 class="font-headline font-bold text-[34px] sm:text-[42px] leading-tight text-deep-navy mt-2">
+            Getting your appliance fixed is simple.
+          </h2>
+<p class="font-body text-[17px] text-muted-text mt-3">
+            Transparent steps, prompt scheduling, and zero guesswork diagnostic pricing.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative stagger-container">
+<!-- Connecting Line (Desktop) -->
+<div class="reveal-item hidden md:block absolute top-10 left-[18%] right-[18%] h-[2px] bg-primary-blue/20 -z-0 is-revealed" style="transition-delay: 0ms;"></div>
+<!-- Step 1 -->
+<div class="reveal-item bg-white rounded-xl p-7 shadow-sm border border-border-subtle flex flex-col relative z-10 transition-transform duration-200 hover:-translate-y-1 is-revealed" style="transition-delay: 80ms;">
+<div class="w-12 h-12 rounded-full bg-omega-red text-white flex items-center justify-center font-headline font-bold text-[20px] mb-5 shadow-sm">
+              01
+            </div>
+<h3 class="font-headline font-bold text-[20px] text-deep-navy">Tell Us What's Wrong</h3>
+<p class="font-body text-[15px] text-muted-text mt-2.5 leading-relaxed">
+              Call or book online in 60 seconds. Choose a convenient appointment window that fits your schedule comfortably.
+            </p>
+<div class="mt-6 pt-4 border-t border-border-subtle flex items-center gap-2 text-[13px] font-semibold text-primary-blue font-body">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="">Fast 60-Second Online Booking</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="reveal-item bg-white rounded-xl p-7 shadow-sm border border-border-subtle flex flex-col relative z-10 transition-transform duration-200 hover:-translate-y-1 is-revealed" style="transition-delay: 160ms;">
+<div class="w-12 h-12 rounded-full bg-omega-red text-white flex items-center justify-center font-headline font-bold text-[20px] mb-5 shadow-sm">
+              02
+            </div>
+<h3 class="font-headline font-bold text-[20px] text-deep-navy">We Diagnose It</h3>
+<p class="font-body text-[15px] text-muted-text mt-2.5 leading-relaxed">
+              A certified technician arrives in uniform, protects your floors, performs diagnostics, and provides an upfront Blue Book quote.
+            </p>
+<div class="mt-6 pt-4 border-t border-border-subtle flex items-center gap-2 text-[13px] font-semibold text-primary-blue font-body">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span class="">Upfront Blue Book Pricing</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="reveal-item bg-white rounded-xl p-7 shadow-sm border border-border-subtle flex flex-col relative z-10 transition-transform duration-200 hover:-translate-y-1 is-revealed" style="transition-delay: 240ms;">
+<div class="w-12 h-12 rounded-full bg-omega-red text-white flex items-center justify-center font-headline font-bold text-[20px] mb-5 shadow-sm">
+              03
+            </div>
+<h3 class="font-headline font-bold text-[20px] text-deep-navy">We Fix It</h3>
+<p class="font-body text-[15px] text-muted-text mt-2.5 leading-relaxed">
+              Repairs completed quickly with truck-stocked parts, backed by our comprehensive 1-year parts &amp; 60-day labor warranty.
+            </p>
+<div class="mt-6 pt-4 border-t border-border-subtle flex items-center gap-2 text-[13px] font-semibold text-primary-blue font-body">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="">1-Year Parts &amp; Labor Warranty</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==================== 9. REVIEWS SECTION (TWO-COLUMN UPGRADE) ==================== -->
+<section class="w-full bg-white py-20 lg:py-24 border-t border-border-subtle" id="reviews"><div class="max-w-[1240px] mx-auto px-6"><div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"><div class="reveal-item lg:col-span-5 flex flex-col lg:sticky lg:top-28 is-revealed"><span class="font-body text-[13px] font-bold text-omega-red uppercase tracking-wider">CUSTOMER STORIES</span><h2 class="font-headline font-bold text-[36px] sm:text-[42px] leading-tight text-deep-navy mt-2.5">Don't just take our word for it.</h2><div class="mt-6 pt-6 border-t border-border-subtle flex flex-col"><div class="flex items-center gap-1 text-[#F59E0B]"><span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">star</span></div><div class="font-headline font-bold text-[36px] text-deep-navy leading-none mt-2.5">2,000+</div><div class="font-body font-semibold text-[16px] text-muted-text mt-1">Local Customer Reviews</div></div><p class="font-body text-[16px] text-muted-text leading-relaxed mt-5">Real experiences from homeowners across our service area in the Twin Cities, St. Cloud, and Western Wisconsin.</p><div class="mt-7"><a class="group inline-flex items-center font-body font-semibold text-[15px] text-primary-blue hover:text-deep-navy transition-colors duration-200" href="https://omegaforceappliancerepair.com/schedule-service/">See All Reviews <span class="material-symbols-outlined text-[18px] ml-1.5 transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span></a></div></div><div class="lg:col-span-7 flex flex-col gap-6 stagger-container"><div class="reveal-item review-card bg-white rounded-xl p-7 border border-[#E6EDF2] border-t-[3px] border-t-omega-red shadow-sm flex flex-col justify-between is-revealed" style="transition-delay: 0ms;"><div><div class="flex items-center justify-between gap-2 mb-3.5"><div class="flex items-center text-[#F59E0B]"><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span></div><div class="inline-flex items-center gap-1.5 bg-bg-soft px-2.5 py-1 rounded text-[11px] font-semibold text-muted-text border border-border-subtle"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path></svg><span class="">Google Verified</span></div></div><p class="font-body text-[15px] sm:text-[16px] text-deep-navy leading-[1.6]">"Service tech was quick and efficient. Explained everything in detail and did a quick job on our dishwasher. The cost came in lower than expected. We will be using them again."</p></div><div class="mt-5 pt-3.5 border-t border-border-subtle flex items-center justify-between"><span class="font-headline font-semibold text-[15px] text-deep-navy">Hayden C.</span><span class="font-body text-[13px] text-muted-text">Minneapolis, MN</span></div></div><div class="reveal-item review-card bg-white rounded-xl p-7 border border-[#E6EDF2] border-t-[3px] border-t-omega-red shadow-sm flex flex-col justify-between is-revealed" style="transition-delay: 80ms;"><div><div class="flex items-center justify-between gap-2 mb-3.5"><div class="flex items-center text-[#F59E0B]"><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span></div><div class="inline-flex items-center gap-1.5 bg-bg-soft px-2.5 py-1 rounded text-[11px] font-semibold text-muted-text border border-border-subtle"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path></svg><span class="">Google Verified</span></div></div><p class="font-body text-[15px] sm:text-[16px] text-deep-navy leading-[1.6]">"Mark was knowledgeable, efficient, friendly and I would not hesitate to use this company again! Arrived right on time and diagnosed the issue immediately."</p></div><div class="mt-5 pt-3.5 border-t border-border-subtle flex items-center justify-between"><span class="font-headline font-semibold text-[15px] text-deep-navy">Heidi Blanchette</span><span class="font-body text-[13px] text-muted-text">Rogers, MN</span></div></div><div class="reveal-item review-card bg-white rounded-xl p-7 border border-[#E6EDF2] border-t-[3px] border-t-omega-red shadow-sm flex flex-col justify-between is-revealed" style="transition-delay: 160ms;"><div><div class="flex items-center justify-between gap-2 mb-3.5"><div class="flex items-center text-[#F59E0B]"><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span></div><div class="inline-flex items-center gap-1.5 bg-bg-soft px-2.5 py-1 rounded text-[11px] font-semibold text-muted-text border border-border-subtle"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path></svg><span class="">Google Verified</span></div></div><p class="font-body text-[15px] sm:text-[16px] text-deep-navy leading-[1.6]">"Nicole came over to check our dryer that stopped working. Found the heating element, installed it and cleaned the machine thoroughly. Outstanding service!"</p></div><div class="mt-5 pt-3.5 border-t border-border-subtle flex items-center justify-between"><span class="font-headline font-semibold text-[15px] text-deep-navy">Karen Gilbert</span><span class="font-body text-[13px] text-muted-text">St. Cloud, MN</span></div></div></div></div></div></section>
+<!-- ==================== 10. SERVICE AREA SECTION ==================== -->
+<section class="w-full bg-deep-navy py-20 lg:py-24 text-white" id="service-area"><div class="max-w-[1240px] mx-auto px-6"><div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center"><div class="reveal-item lg:col-span-6 flex flex-col is-revealed"><span class="font-body text-[13px] font-bold text-omega-red uppercase tracking-[1.5px]">WHERE WE SERVE</span><h2 class="font-headline font-bold text-[36px] sm:text-[44px] leading-tight text-white mt-2.5">Local service. Real people.</h2><p class="font-body text-[17px] sm:text-[18px] text-[#B9C8D0] leading-[1.6] mt-4 max-w-xl">Serving homeowners throughout the Twin Cities, Greater St. Cloud and Western Wisconsin.</p><div class="flex flex-col gap-3 mt-8"><div class="bg-white/5 border border-white/10 rounded-xl p-4 sm:p-4.5 backdrop-blur-sm transition-colors duration-200 hover:bg-white/10"><div class="flex items-center gap-2 text-primary-blue"><span class="material-symbols-outlined text-[20px]">near_me</span><h3 class="font-headline font-bold text-[16px] sm:text-[17px] text-white">Twin Cities Metro</h3></div><p class="font-body text-[13px] text-[#B9C8D0] mt-1.5 leading-relaxed">Rogers (HQ), Minneapolis, St. Paul, Minnetonka, Plymouth, Bloomington, Woodbury &amp; surrounding communities.</p></div><div class="bg-white/5 border border-white/10 rounded-xl p-4 sm:p-4.5 backdrop-blur-sm transition-colors duration-200 hover:bg-white/10"><div class="flex items-center gap-2 text-primary-blue"><span class="material-symbols-outlined text-[20px]">near_me</span><h3 class="font-headline font-bold text-[16px] sm:text-[17px] text-white">Greater St. Cloud</h3></div><p class="font-body text-[13px] text-[#B9C8D0] mt-1.5 leading-relaxed">St. Cloud, Sartell, Sauk Rapids, Waite Park, Monticello, Elk River, Buffalo &amp; St. Michael corridors.</p></div><div class="bg-white/5 border border-white/10 rounded-xl p-4 sm:p-4.5 backdrop-blur-sm transition-colors duration-200 hover:bg-white/10"><div class="flex items-center gap-2 text-primary-blue"><span class="material-symbols-outlined text-[20px]">near_me</span><h3 class="font-headline font-bold text-[16px] sm:text-[17px] text-white">Western Wisconsin</h3></div><p class="font-body text-[13px] text-[#B9C8D0] mt-1.5 leading-relaxed">Hudson, River Falls, New Richmond, Prescott, Roberts, Hammond &amp; St. Croix County.</p></div></div><div class="mt-8"><a class="btn-red-primary inline-flex items-center justify-center bg-omega-red text-white font-body font-bold text-[15px] sm:text-[16px] h-[52px] px-8 rounded-lg shadow-sm group" href="https://omegaforceappliancerepair.com/schedule-service/">Schedule a Repair in Your Area <span class="btn-arrow material-symbols-outlined text-[19px] ml-2">arrow_forward</span></a></div></div><div class="reveal-item lg:col-span-6 w-full is-revealed"><div class="relative w-full rounded-2xl bg-[#0d1a24] border border-[#1f364a] overflow-hidden min-h-[420px] p-6 flex flex-col justify-between shadow-lg"><div class="absolute inset-0 pointer-events-none opacity-20"><svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg"><defs><pattern height="24" id="service-grid" patternUnits="userSpaceOnUse" width="24"><circle cx="2" cy="2" fill="#087FC3" r="1"></circle></pattern></defs><rect fill="url(#service-grid)" height="100%" width="100%"></rect></svg></div><svg class="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="xMidYMid slice" viewBox="0 0 540 440"><defs><linearGradient id="mnFill" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" stop-color="#087FC3" stop-opacity="0.15"></stop><stop offset="100%" stop-color="#087FC3" stop-opacity="0.05"></stop></linearGradient><linearGradient id="wiFill" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" stop-color="#087FC3" stop-opacity="0.08"></stop><stop offset="100%" stop-color="#087FC3" stop-opacity="0.02"></stop></linearGradient></defs><path d="M 40 40 L 320 40 L 330 110 Q 320 180 325 240 Q 335 300 370 380 L 40 380 Z" fill="url(#mnFill)" stroke="#087FC3" stroke-dasharray="4 4" stroke-opacity="0.3" stroke-width="1.5"></path><path d="M 320 40 L 500 40 L 500 380 L 370 380 Q 335 300 325 240 Q 320 180 330 110 Z" fill="url(#wiFill)" stroke="#087FC3" stroke-dasharray="4 4" stroke-opacity="0.2" stroke-width="1.5"></path><path d="M 320 40 Q 315 90 328 130 T 322 220 Q 326 270 350 330 Q 365 365 375 410" fill="none" stroke="#087FC3" stroke-opacity="0.45" stroke-width="3"></path><path d="M 100 200 Q 180 230 265 245" fill="none" stroke="#087FC3" stroke-opacity="0.2" stroke-width="1.5"></path><path d="M 265 245 Q 360 250 440 260" fill="none" stroke="#087FC3" stroke-opacity="0.2" stroke-width="1.5"></path><text fill="#60717D" font-family="sans-serif" font-size="12" font-weight="700" letter-spacing="2" x="100" y="80">MINNESOTA</text><text fill="#60717D" font-family="sans-serif" font-size="12" font-weight="700" letter-spacing="2" x="390" y="80">WISCONSIN</text><text fill="#087FC3" font-family="sans-serif" font-size="9" font-weight="600" letter-spacing="1" opacity="0.7" transform="rotate(68, 335, 170)" x="335" y="170">ST. CROIX / MISSISSIPPI</text></svg><div class="relative z-10 flex items-center justify-between text-[11px] font-semibold text-[#B9C8D0] bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-lg w-fit backdrop-blur-sm"><span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-omega-red"></span> Active Fleet Coverage • 15 Units</span></div><div class="relative z-10 my-auto h-[320px] w-full"><div class="map-marker absolute left-[8%] sm:left-[12%] top-[14%] flex items-start gap-2.5 group"><div class="relative mt-0.5"><div class="relative w-4 h-4 rounded-full bg-omega-red border-2 border-white shadow-md flex items-center justify-center"><div class="w-1 h-1 bg-white rounded-full"></div></div></div><div class="bg-[#142533]/90 border border-white/15 backdrop-blur-sm rounded-lg px-3 py-1.5 shadow-md"><div class="font-headline font-bold text-[13px] text-white flex items-center gap-1.5">Greater St. Cloud <span class="text-[9px] font-semibold uppercase tracking-wider text-omega-red bg-omega-red/10 px-1 rounded">Route A</span></div><div class="text-[11px] text-[#B9C8D0] font-body">St. Cloud • Sartell • Sauk Rapids</div></div></div><div class="map-marker absolute left-[28%] sm:left-[35%] top-[45%] flex items-start gap-2.5 group"><div class="relative mt-0.5"><div class="relative w-5 h-5 rounded-full bg-omega-red border-2 border-white shadow-lg flex items-center justify-center"><span class="material-symbols-outlined text-[12px] text-white">home</span></div></div><div class="bg-[#142533]/95 border border-white/20 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg"><div class="flex items-center gap-1.5"><span class="font-headline font-bold text-[14px] text-white">Twin Cities Metro</span><span class="text-[9px] font-bold uppercase tracking-wider text-white bg-primary-blue px-1.5 py-0.5 rounded">HQ Rogers</span></div><div class="text-[11px] text-[#B9C8D0] font-body mt-0.5">Minneapolis • St. Paul • Suburbs</div><div class="text-[10px] text-emerald-400 font-semibold mt-1 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Same-Day Direct Dispatch</div></div></div><div class="map-marker absolute right-[4%] sm:right-[6%] top-[62%] flex items-start gap-2.5 group"><div class="relative mt-0.5"><div class="relative w-4 h-4 rounded-full bg-omega-red border-2 border-white shadow-md flex items-center justify-center"><div class="w-1 h-1 bg-white rounded-full"></div></div></div><div class="bg-[#142533]/90 border border-white/15 backdrop-blur-sm rounded-lg px-3 py-1.5 shadow-md"><div class="font-headline font-bold text-[13px] text-white flex items-center gap-1.5">Western Wisconsin <span class="text-[9px] font-semibold uppercase tracking-wider text-omega-red bg-omega-red/10 px-1 rounded">Route C</span></div><div class="text-[11px] text-[#B9C8D0] font-body">Hudson • River Falls • St. Croix Co.</div></div></div></div><div class="relative z-10 flex items-center justify-between pt-3 border-t border-white/10 text-[11px] text-[#B9C8D0]"><span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-primary-blue">local_shipping</span> 15 Stocked Vans in Territory</span><span class="text-right">Rogers HQ: 21897 S Diamond Lake Rd</span></div></div></div></div></div></section>
+<!-- ==================== 11. FINAL CONVERSION CTA (DEEP NAVY BACKGROUND) ==================== -->
+<section class="w-full bg-deep-navy py-20 lg:py-24 text-center border-t border-white/10" id="schedule-repair">
+<div class="reveal-item max-w-[1240px] mx-auto px-6 flex flex-col items-center is-revealed">
+<h2 class="font-headline font-bold text-[36px] sm:text-[46px] lg:text-[50px] leading-tight text-white max-w-3xl">Your appliance shouldn't ruin your day.</h2>
+<p class="font-body text-[17px] sm:text-[18px] text-[#B9C8D0] max-w-xl mt-3 leading-relaxed">Let's get it working again. Same-day and next-day appointments are often available.</p>
+<div class="flex flex-wrap items-center justify-center gap-4 sm:gap-5 mt-8">
+<a class="btn-red-primary inline-flex items-center justify-center bg-omega-red text-white font-body font-bold text-[16px] h-[52px] px-8 rounded-lg shadow-sm group" href="https://omegaforceappliancerepair.com/schedule-service/">
+            Schedule a Repair
+            <span class="btn-arrow material-symbols-outlined text-[19px] ml-1.5">arrow_forward</span>
+</a>
+<a class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-body font-semibold text-[15px] h-[52px] px-6 rounded-lg border border-white/20 transition-colors duration-200" href="tel:7632601834">
+<span class="material-symbols-outlined text-primary-blue text-[20px]">call</span>
+<span class="">Call (763) 260-1834</span>
+</a>
+</div>
+<div class="mt-6 text-[13px] text-[#B9C8D0]/80 font-body">Mon–Fri 7:00am–6:00pm • Sat 8:30am–4:30pm • Sun 9:30am–5:30pm</div>
+</div>
+</section>
+</main>
+<!-- ==================== 12. FOOTER ==================== -->
+<footer class="w-full bg-deep-navy text-white pt-16 pb-12 border-t border-white/10"><div class="max-w-[1240px] mx-auto px-6"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12"><div class="flex flex-col"><div class="mb-4"><img alt="Omega Force Appliance Repair Logo" class="h-11 w-auto max-w-[160px] object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VwYFQEAd4G-JO4dq1ddac-JDK9M6YGl4ul1JsG0zzU3MKlY4FQQNu-U6fWcmzOP4LR-zrCJCD5n38kWrREPFg-mLvphyv1_5OONQpV41QrWF8QBYmQvFtgFrwhXajgheObACQ_32G2cqWlD-KPhy7sput35Pfm6Zfvd-3bXhxN1wjfCnda2oDAkQSruuBHibl7ljlpZ0M3JWbo2RTSHp08ZfGPOj6sN4DSu9QPDUreZf5BFQUkclgPdUKw"></div><p class="font-body text-[14px] text-white/70 leading-relaxed max-w-[260px]">Local appliance repair you can count on.</p></div><div class="flex flex-col"><span class="font-headline font-semibold text-[12px] uppercase tracking-wider text-white/50 mb-4">Appliance Repair</span><ul class="flex flex-col gap-2.5 text-[14px] font-body text-[#B9C8D0]"><li class=""><a class="hover:text-white transition-colors duration-200" href="#services">Refrigerator</a></li><li class=""><a class="hover:text-white transition-colors duration-200" href="#services">Washer</a></li><li class=""><a class="hover:text-white transition-colors duration-200" href="#services">Dryer</a></li><li class=""><a class="hover:text-white transition-colors duration-200" href="#services">Oven &amp; Range</a></li><li class=""><a class="hover:text-white transition-colors duration-200" href="#services">Dishwasher</a></li><li class=""><a class="hover:text-white transition-colors duration-200" href="#services">Microwave</a></li><li class=""><a class="hover:text-white transition-colors duration-200" href="#services">Cooktop</a></li></ul></div><div class="flex flex-col"><span class="font-headline font-semibold text-[12px] uppercase tracking-wider text-white/50 mb-4">Company</span><ul class="flex flex-col gap-2.5 text-[14px] font-body text-[#B9C8D0]"><li class=""><a class="hover:text-white transition-colors duration-200" href="#why-omega-force">About Us</a></li><li class=""><a class="hover:text-white transition-colors duration-200" href="#team">Our Team</a></li><li class=""><a class="hover:text-white transition-colors duration-200" href="#reviews">Reviews</a></li><li class=""><a class="hover:text-white transition-colors duration-200" href="#service-area">Service Area</a></li><li class=""><a class="hover:text-white transition-colors duration-200" href="tel:7632601834">Contact</a></li></ul></div><div class="flex flex-col"><span class="font-headline font-semibold text-[12px] uppercase tracking-wider text-white/50 mb-4">Get In Touch</span><div class="flex flex-col"><a class="text-white font-semibold text-[16px] hover:text-primary-blue transition-colors duration-200 font-body" href="tel:7632601834">(763) 260-1834</a><p class="text-[12px] text-[#B9C8D0]/80 font-body mt-1 mb-4">Twin Cities • Greater St. Cloud • Western Wisconsin</p><a class="btn-red-primary inline-flex items-center justify-center bg-omega-red text-white font-body font-semibold text-[14px] h-[46px] px-5 rounded-lg w-fit" href="https://omegaforceappliancerepair.com/schedule-service/">Schedule a Repair →</a></div></div></div><div class="border-t border-[#33424D] pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-[#B9C8D0]/80 font-body"><p class="">© Omega Force Appliance Repair</p><div class="flex items-center gap-4"><a class="hover:text-white transition-colors duration-200" href="#">Privacy Policy</a><span class="">•</span><a class="hover:text-white transition-colors duration-200" href="#">Terms</a></div></div></div></footer>
+<!-- Motion & Scroll Interaction Script -->
+<script>
+  (function() {
+    // 1. Sticky Header Scroll Refinement
+    const header = document.getElementById('site-header');
+    if (header) {
+      const handleScroll = () => {
+        if (window.scrollY > 30) {
+          header.classList.add('is-scrolled');
+        } else {
+          header.classList.remove('is-scrolled');
+        }
+      };
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
+    }
+
+    // 2. Intersection Observer Scroll Reveals with Cascading Stagger
+    if ('IntersectionObserver' in window) {
+      // Check prefers-reduced-motion
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        document.querySelectorAll('.reveal-item').forEach(el => {
+          el.classList.add('is-revealed');
+        });
+        return;
+      }
+
+      // Group stagger setups
+      const staggerContainers = document.querySelectorAll('.stagger-container');
+      staggerContainers.forEach(container => {
+        const items = container.querySelectorAll('.reveal-item');
+        items.forEach((item, index) => {
+          item.style.transitionDelay = `${index * 80}ms`;
+        });
+      });
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -10% 0px',
+        threshold: 0.12
+      };
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal-item').forEach(el => {
+        revealObserver.observe(el);
+      });
+    } else {
+      // Fallback for browsers without IntersectionObserver
+      document.querySelectorAll('.reveal-item').forEach(el => {
+        el.classList.add('is-revealed');
+      });
+    }
+  })();
+</script>
+
+
+</body></html>
